@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+  
+
+    <div class="card">
+        <div class="card-header">
+            Nuevo movimiento
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos de la persona</h5>
+            <p class="card-text">
+                {% for persona  in personas  %}
+    <form method="POST" action="/abonos" class="form-group" enctype="multipart/form-data">  
+    <label for="">ID: {{persona[0]}}</label>
+    <br>         
+    <label for="txtnombre">Nombre</label>
+    <input type="text" value="{{persona[1]}}"name="txtnombre" id="txtnombre" class="form-control" readonly>
+    <label for="txtfecha">Fecha</label>
+    <input type="date" name="txtfecha" class="form-control " max="{{fecha}}" value="{{fecha}}" data-date-format="dd-mm-yyyy"id="txtfecha" readonly>
+    <br>
+    
+    <select class="form-control" id="drop" name="tipo" >
+        <option selected>Selecciona el tipo de movimiento</option>
+        <option value="abono">Abono</option>
+        <option value="Préstamo">Préstamo</option>
+      </select>
+      <br>
+    <label for="cantidad">Cantidad</label>
+    <input type="number" name="cantidad" class="form-control"id="cantidad">
+    <label for="numsaldo">Saldo Actual</label>
+    <input type="number" value="{{persona[5]}}" name="numsaldo"class="form-control" id="numsaldo" readonly>
+    <br>
+    <a href="{{url_for('index')}}" class="btn btn-primary">Volver</a>
+    <button type="submit"class="btn btn-success">Guardar</button>
+    </form>
+    {%endfor%}
+            </p>
+        </div>
+    </div>
+    
+  
+
+{% include 'footer.html' %}

@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+{% with messages= get_flashed_messages()%}
+{%if messages%}
+    <div class="alert alert-danger" role="alert">
+     {% for message in messages %}
+         {{message}}
+     {% endfor %}
+     </div>
+{% endif %} 
+{% endwith %}   
+ <a href="{{url_for('crear')}}"style="margin:0 0 10px 0" class="btn btn-success">Agregar persona</a> 
+  
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr style="text-align: center;"><th>#</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Operaciones</th>
+                <th>Saldo</th>
+                <th>Acciones</th>
+                <th>Movimientos</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in  empleados %}
+            <tr style="text-align: center;">
+                <td>{{empleado[0]}}</td>
+                <td>{{empleado[1]}}</td>
+                <td>{{empleado[2]}}</td>
+                <td>{{empleado[3]}}</td>
+                <td>{{empleado[4]}}</td>
+                <td>{{empleado[5]}}</td>
+                <td> <a href="/edit/{{empleado[0]}}" class="btn btn-warning">Editar</a> 
+                       <a href="/destroy/{{empleado[0]}}" class="btn btn-danger" onclick="return confirm('¿Desea borrar a la persona?')">Eliminar</a>
+                    </td>
+                    <td><a href="/movimiento/{{empleado[0]}}" class="btn btn-primary">Nuevo</a> <a href="/consultar/{{empleado[1]}}" class="btn btn-info">Consultar</a></td>
+
+            </tr> 
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+{% include 'footer.html' %}

@@ -1,0 +1,32 @@
+{% include 'header.html' %}
+<h1>formulario para editar</h1>
+
+{% for persona  in personas  %}
+<div class="card">
+    <div class="card-header">
+        Editar a una persona
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Datos de la persona</h5>
+        <p class="card-text"><form method="POST" action="/update" class="form-group" enctype="multipart/form-data">
+            <input type="number" name="txtid" id="txtid" value="{{persona[0]}}"><br>
+            <label for="txtnombre">Nombre</label>
+            <input type="text" value="{{persona[1]}}" class="form-control" name="txtnombre" id="txtnombre">
+            <label for="txtdireccion">Direccion</label>
+            <input type="text" value="{{persona[2]}} " class="form-control" name="txtdireccion" id="txtdireccion">
+            <label for="numtele">Teléfono</label>
+            <input type="tel" value="{{persona[3]}}" class="form-control" name="numtele" id="numtele">
+            <label for="numabono">Abonos</label>
+            <input type="number" value="{{persona[4]}}" class="form-control" name="numabono" id="numabono">
+            <label for="numsaldo">Saldo</label>
+            <input type="number" value="{{persona[5]}}" class="form-control" name="numsaldo" id="numsaldo">
+            <a href="{{url_for('index')}}" class="btn btn-primary">Volver</a>
+            <button type="submit" class="btn btn-success">Guardar</button>
+
+        </form></p>
+    </div>
+</div>
+
+
+{% endfor %}    
+{% include 'footer.html' %}
